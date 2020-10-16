@@ -1,0 +1,6 @@
+name = "url-shortener"
+type = "javascript"
+account_id = "ffc82d19b3cc9cf95372377ccc0228fc"
+workers_dev = false
+route = "konf.ovh/url/*"
+zone_id = "be6f6ce198a96bbbac7670fd5e8a1a60"

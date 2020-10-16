@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>url shortener</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.min.css">
+    <style>
+        html { overflow-y: auto }
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        main { flex: 1 }
+        footer { padding: 2rem !important; }
+    </style>
+</head>
+<body>
+<main>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 class="title">url shortener</h1>
+                <h2 class="subtitle">access your links at konf.ovh/url/</h2>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <form class="control" id="form">
+                <input class="input is-primary is-medium" type="url" name="url" placeholder="paste url here and click enter">
+            </form>
+        </div>
+    </section>
+</main>
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p><a href="mailto:pawel.gancarczyk@gmail.com">contact</a></p>
+    </div>
+</footer>
+<script>
+  window.onload = () => {
+    document.getElementById('form').onsubmit = event => {
+      let url = event.target.elements['url'].value;
+      fetch(window.location.href, {
+        method: 'POST',
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify([url])
+      })
+        .then(response => response.json()[0])
+        .then(key => {
+          console.log(key);
+        });
+      return false;
+    }
+  }
+</script>
+</body>
+</html>
